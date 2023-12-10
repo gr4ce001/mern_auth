@@ -11,6 +11,7 @@ const test = (req, res) => {
 // update user
 
 const updateUser = async (req, res, next) => {
+  console.log(req.body)
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can update only your account!'));
   }
@@ -18,7 +19,7 @@ const updateUser = async (req, res, next) => {
     if (req.body.password) {
       req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
-
+  
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       {

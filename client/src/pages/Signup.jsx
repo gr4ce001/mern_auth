@@ -16,6 +16,7 @@ export default function SignUp() {
     try {
       setLoading(true);
       setError(false);
+   
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -23,6 +24,7 @@ export default function SignUp() {
         },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
       console.log(data);
       setLoading(false);
@@ -36,6 +38,8 @@ export default function SignUp() {
       setError(true);
     }
   };
+
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
@@ -43,7 +47,7 @@ export default function SignUp() {
         <input
           type='text'
           placeholder='Username'
-          id='username'
+          id='name'
           className='bg-slate-100 p-3 rounded-lg'
           onChange={handleChange}
         />

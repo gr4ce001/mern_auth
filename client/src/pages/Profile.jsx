@@ -33,6 +33,8 @@ export default function Profile() {
       handleFileUpload(image);
     }
   }, [image]);
+
+
   const handleFileUpload = async (image) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + image.name;
@@ -49,15 +51,17 @@ export default function Profile() {
         setImageError(true);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-          setFormData({ ...formData, profilePicture: downloadURL })
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => setFormData({ ...formData, profilePicture: downloadURL })
         );
       }
     );
   };
+
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
